@@ -1,5 +1,9 @@
 # AI Analyst
 
+[![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Claude Code Required](https://img.shields.io/badge/requires-Claude%20Code-blueviolet.svg)](https://claude.ai/code)
+
 A complete AI analyst system powered by Claude Code. You ask a business question. Claude frames it, explores your data, finds the root cause, builds a story, and hands you a branded slide deck with speaker notes. The whole thing takes minutes, not days.
 
 Ships with the NovaMart demo dataset. Connect your own data with `/connect-data`.
@@ -32,15 +36,22 @@ Claude will tell you the exact command. You don't need to memorize anything in t
 npm install -g @anthropic-ai/claude-code
 ```
 
-**2. Clone and open**
+**2. Clone and set up**
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/ai-analyst-lab/ai-analyst.git
 cd ai-analyst
+bash scripts/setup.sh
+bash scripts/download-data.sh
+```
+
+**3. Start Claude Code**
+
+```bash
 claude
 ```
 
-**3. Try it**
+**4. Try it**
 
 ```
 Why is NovaMart's conversion rate declining?
@@ -488,9 +499,24 @@ Python modules in `helpers/` that agents call during execution:
 
 ---
 
+## Requirements
+
+- **Python 3.9+** (3.10+ recommended)
+- **Node.js 18+** (for Claude Code)
+- **Claude Code** with a [Claude Pro subscription](https://claude.ai/pro) ($20/month)
+- **Internet connection** (for Claude API and optional MotherDuck)
+
+---
+
 ## Getting Help
 
 - **Setup issues:** [setup/prerequisites.md](setup/prerequisites.md)
 - **MCP configuration:** [setup/mcp-config.md](setup/mcp-config.md)
 - **MotherDuck setup:** [setup/motherduck-setup.md](setup/motherduck-setup.md)
 - **Questions or bugs:** Open a [GitHub Issue](https://github.com/ai-analyst-lab/ai-analyst/issues)
+
+---
+
+## License
+
+[MIT](LICENSE) -- use it however you want.

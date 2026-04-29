@@ -23,7 +23,7 @@ Don't hand this to someone who can't validate the output. Don't run it on data y
 
 **This doesn't work out of the box.** It's a starting point, not a finished product. The model capability is there with Opus 4.6, but you need to teach it your data, your metrics, your business context. Correct it when it's wrong. Grow it into something that works for your specific use case, or tear it apart and rebuild it how you want. The agents, skills, and pipeline are all markdown files you can read and modify. Nothing is hidden.
 
-**Bring your own data.** No bundled datasets. Connect your CSVs, local databases, or cloud warehouse with `/connect-data` and start analyzing.
+**Bring your own data.** No bundled datasets. Connect your CSVs, DuckDB, Postgres, BigQuery, or Snowflake with `/connect-data` and start analyzing.
 
 ---
 

@@ -2,7 +2,7 @@
 
 Source: **Tessitura Analytics** (CISO platform). CSV exports.
 
-Two pulls needed.
+Three pulls needed.
 
 ---
 
@@ -57,6 +57,58 @@ snapshot is possible, that's still useful.
 | `seats_sold` | Already sold |
 | `seats_held` | Held / unavailable (comps, holds, kills) |
 | `capacity` | Total seats in zone (sanity check) |
+
+---
+
+## 3. Performance Sales Analysis (zone × price-type cross-tab)
+
+**File:** `tessitura_perf_sales_analysis_{date}.csv`
+
+This report breaks every performance into Available / Held / Sold counts by
+**price zone × price type** in one export. It complements pull #2 by giving
+the price-type detail (full, subscriber, group, comp, etc.) per zone, which
+is critical for diagnosing where the drop hit.
+
+We already have one snapshot in this folder
+(`20260429PerformanceSalesAnalysis.csv`, 3,937 rows, all Mamma Mia! perfs).
+Going forward we want **a fresh snapshot per day** through the run so we can
+build sales curves by zone × price type.
+
+**Tessitura report parameters** (Mamma Mia run — fill in season ID & dates
+from the run data in the README):
+
+- **Report:** Performance Sales Analysis
+- **Season ID:** `____` (Mamma Mia's season — e.g., `209` was 2024-2025)
+- **Performance Start Date:** Mamma Mia first performance
+- **Performance End Date:** Mamma Mia last performance
+- **Save / export as:** `Email-CSV (hdr)`
+- **Columns:** `Price Zones`
+- **Rows:** `Price Type`
+- **Show unpaid seats:** `Separate Detail Row`
+- **Include resold seats:** `Yes`
+
+**Schema** (confirmed from existing pull):
+
+| Field | Notes |
+|---|---|
+| `perf_no` | Tessitura performance ID |
+| `day_of_week` | |
+| `perf_date` | Datetime of performance (e.g., `6/23/2026 7:30:00 PM`) |
+| `perf_code` | Short code (e.g., `MAM0623TUE`) |
+| `perf_description` | Production name |
+| `row_group` | `Available` / `Held` / `Sold` (and unpaid as separate row) |
+| `price_type` | Empty for Available/Held rows; set for Sold |
+| `price_type_description` | |
+| `ticket_count` | Count of seats in this bucket |
+| `ticket_price` | Price paid (0 for Available/Held) |
+| `ticket_amount` | Revenue (0 for Available/Held) |
+| `column_group` | Zone label with base price (e.g., `BalC @ 75.00`) |
+| `base_price` | Numeric base price for the zone |
+| `zone_description` | Clean zone code (e.g., `BalC`, `MezA`, `Prem`) |
+
+**Optional second pull — comparable production:** Run the same report for one
+or two comparable Ahmanson productions (see `comparables/INTAKE.md`) so we
+can benchmark sold-vs-available curves zone-for-zone, not just totals.
 
 ---
 
